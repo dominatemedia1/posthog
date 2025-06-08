@@ -10,7 +10,9 @@ ARG SERVER_NAME
 
 ARG PORT
 
-RUN envsubst '$SERVER_NAME,$PORT' < nginx.conf.template > nginx.conf
+ARG POSTHOG_HOST=app.posthog.com
+
+RUN envsubst '$SERVER_NAME,$PORT,$POSTHOG_HOST' < nginx.conf.template > nginx.conf
 
 FROM nginx:latest
 
